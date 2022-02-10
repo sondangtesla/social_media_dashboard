@@ -261,7 +261,7 @@ class Preprocessing:
         values = list(trigrams_bar.values())
         plt.figure(figsize = (44,8))
         plt.bar(range(len(trigrams_bar)), values, tick_label = actual_name)
-        plt.xticks(fontsize=20, color='black')
+        plt.xticks(fontsize=20, color='black', rotation=45)
         plt.yticks(fontsize=20, color='black')
         self.t = dtm.datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
         self.nm = "trigrams" + self.t + '.png'
@@ -315,7 +315,7 @@ class Preprocessing:
         values = list(verb_bar.values())
         plt.figure(figsize=(40,8))
         plt.bar(range(len(verb_bar)), values, tick_label=names)
-        plt.xticks(fontsize=20, color='black')
+        plt.xticks(fontsize=20, color='black', rotation=45)
         plt.yticks(fontsize=20, color='black')
         self.t = dtm.datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
         self.nm = "verb_counter" + self.t + '.png'
@@ -347,7 +347,7 @@ class Preprocessing:
         values = list(adj_bar.values())
         plt.figure(figsize=(40,20))
         plt.bar(range(len(adj_bar)), values, tick_label=names)
-        plt.xticks(fontsize=20, color='black')
+        plt.xticks(fontsize=20, color='black', rotation=45)
         plt.yticks(fontsize=20, color='black')
         self.t = dtm.datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
         self.nm = "adjective_counter" + self.t + '.png'
@@ -381,7 +381,7 @@ class Preprocessing:
         values = list(adv_bar.values())
         plt.figure(figsize=(40,8))
         plt.bar(range(len(adv_bar)), values, tick_label = names)
-        plt.xticks(fontsize=20, color='black')
+        plt.xticks(fontsize=20, color='black', rotation=45)
         plt.yticks(fontsize=20, color='black')
         self.t = dtm.datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
         self.nm = "adverb_counter" + self.t + '.png'
@@ -499,6 +499,7 @@ class Preprocessing:
         return tweets_list
 
 class Network:
+    figure(figsize=(20, 20), dpi=80)
     def RT_nodes_edges(self, ds_tweets):
         G_rt = nx.from_pandas_edgelist(
         ds_tweets,
@@ -638,10 +639,11 @@ class Timeseries:
         
         sns.lineplot(data=mean1.sort_index())
         sns.lineplot(data=mean2.sort_index())
-        plt.xlabel('Minute'); plt.ylabel('Frequency')
-        plt.xticks(rotation=45)
-        plt.title('Tweet mentions over time')
-        plt.legend((word1, word2))
+        plt.xlabel('Minute', fontsize=20); plt.ylabel('Frequency', fontsize=20)
+        plt.xticks(fontsize=20, color='black', rotation=45)
+        plt.yticks(fontsize=20, color='black')
+        plt.title('Tweet mentions over time', fontsize=20)
+        plt.legend((word1, word2), fontsize=20)
         t = dtm.datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
         nm = "timeseries" + t + '.png'
         plt.savefig(GRAFIK_LOC + nm)

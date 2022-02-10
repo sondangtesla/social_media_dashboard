@@ -76,6 +76,11 @@ section#testing {
   font-size: 16px;
 }
 
+.judul-sedang {
+  font-weight: 600;
+  font-size: 25px;
+}
+
 .small {
   padding-top: 1px;
   font-weight: 300;
@@ -89,6 +94,16 @@ section#testing {
   font-weight: 700;
   line-height: 38px;
   color:#b0f0c6;
+}
+
+.caption-kecil {
+  font-family: 'Lato', sans-serif;
+  font-size: 18px;
+  margin-top: 5px;
+  padding-bottom: 30px;
+  font-weight: 700;
+  line-height: 38px;
+  color:#92d677;
 }
 
 .institusi {

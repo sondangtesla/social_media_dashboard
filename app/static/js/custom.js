@@ -38,6 +38,7 @@ var btnVerbReset = ID("btnVerbReset");
 var btnAdjectiveReset = ID("btnAdjectiveReset");
 var btnAdverbReset = ID("btnAdverbReset");
 var btnNounReset = ID("btnNounReset");
+var btnTimeseriesReset = ID("btnTimeseriesReset");
 
 
 var btnScrape = ID("btnScrape");
@@ -51,6 +52,7 @@ var btnVerb = ID("btnVerb")
 var btnAdjective = ID("btnAdjective")
 var btnAdverb = ID("btnAdverb")
 var btnNoun = ID("btnNoun")
+var btnTimeseries = ID("btnTimeseries");
 
 var spinner = ID("spinner");
 var testSpinner = ID("test_spinner");
@@ -67,6 +69,7 @@ var formScrape = ID("formScrape");
 var formTest = ID("formTest");
 var formFilter = ID("formFilter");
 var formStopwords = ID("formStopwords");
+var formTimeseries = ID("formTimeseries")
 
 var cloud = ID("cloud");
 var unigram = ID("unigram");
@@ -75,6 +78,7 @@ var verb = ID("verb");
 var adjective = ID("adjective");
 var adverb = ID("adverb");
 var noun = ID("noun");
+var timeseries = ID("timeseries")
 
 
 // Akhir Deklarasi Variabel
@@ -456,7 +460,7 @@ $(formStopwords).submit(function (e) {
       console.log(obj["network"]);
         $(network).attr("src", "./static/img/grafik/" + obj["network"]);
       console.log(obj["timeseries"]);
-        $(timeseries).attr("src", "./static/img/grafik/" + obj["timeseries"]);
+        $(timeseries).attr("src", "./static/img/timeseries.png");
       console.log(obj["unigram"]);
         $(unigram).attr("src", "./static/img/grafik/" + obj["unigram"]);
       console.log(obj["bigram"]);
@@ -974,6 +978,7 @@ function setupDataRatio() {
   });
 }
 
+
 $(formTimeseries).submit(function (e) {
   e.preventDefault();
   
@@ -983,7 +988,7 @@ $(formTimeseries).submit(function (e) {
   var formData = new FormData(this);
   
   var xhr = $.ajax({
-    url: "/timeseries",
+    url: "/graph",
     type: "POST",
     cache: false,
     contentType: false,

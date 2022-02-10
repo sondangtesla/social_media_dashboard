@@ -111,6 +111,28 @@ def exist_twitter():
         return res
     return render_template("index.html")
 
+
+@app.route("/graph", methods=["GET", "POST"])
+def graph():
+    
+    word1 = "#GarongKorupsiBerjamaah"
+    word2 = "BPJS"
+
+    ds_tweets = pd.read_csv('C:/Users/ASUS/nlp_analysis/app/static/file/collected/tweet.csv')
+    ds_tweets = ds_tweets.sort_values(['created_at'], ascending=[True])
+    ds_tweets['created_at'] = pd.to_datetime(ds_tweets['created_at'])
+    ds_tweets = ds_tweets.set_index('created_at')
+
+    timeseries_image = tm.get_timeseries_plot(ds_tweets, word1, word2)
+
+    hasil = {
+           "timeseries" : {timeseries_image}
+           }
+    res = json.dumps(hasil, default=set_default), 200
+    return res
+
+
+
 @app.route("/timeseries", methods=["GET", "POST"])
 def timeseries_plot():
     if request.method == "POST":
@@ -136,8 +158,6 @@ def timeseries_plot():
         return res
     return render_template("index.html")
 
-@app.route()
-
 @app.route("/stopwords", methods=["GET", "POST"])
 def stopwords_custom():
     
@@ -148,7 +168,7 @@ def stopwords_custom():
         trigram_threshold = 170
         verb_threshold = 30
         adjective_threshold = 10
-        adverb_threshold = 10
+        adverb_threshold = 2
         noun_threshold = 200
         
         locHStopwords = stopwords()

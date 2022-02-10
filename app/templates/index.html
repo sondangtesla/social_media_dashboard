@@ -57,7 +57,14 @@
           <a href="#testing" class="bt-primary-lg"> SELECT FROM EXIST DATA </a>
         </div>
         
-      </div>      
+      </div>
+      <div class="col-md-6 pr-1">
+        <div class="caption">HOW TO COLLECT DATA </div>
+        <div class="caption-kecil">There are 2 options available:</div>
+        <div class="caption-kecil">1. Scraping twitter data with our inbuilt dashboard feature.<br>Specify date (from when, until when) and keyword(s) to search</div>
+        <div class="caption-kecil">2. Uploading your own data (.csv file)</div>
+        
+      </div>       
     </div>
     </div>
   </div>
@@ -66,8 +73,8 @@
   <div class="container">
       <div data-aos="fade-right" data-aos-delay="600">
       <section id="scrape" class="content">
-        <h2 class="judul">COLLECT DATA</h2>
-  
+        <h2 class="judul">COLLECT DATA</h2><br>
+        <h6>Specify date (from when, until when) and keyword(s) to search</h6>
         <br>
         <div class="row">
           <div class="col-md-12">
@@ -151,6 +158,7 @@
       <section id="testing" class="content">
         <h2 class="judul">SELECT FROM EXISTING DATA</h2>
         <br>
+        <h6>Select your own data, it must be .CSV file</h6>
         <div class="row">
             <div class="col-md-12">
               <form id="formTest" action="" enctype="multipart/form-data">
@@ -267,13 +275,18 @@
                         </table>
                           <br><br><br>
                         <div class="col-md-12">
-                          <div class="sub-judul">Analyze Tweet</div>
+                          <div class="judul">ANALYSIS</div>
                           <br><br>
+                            <h5>Stopwords which are words that do not add additional information are filtered out</h5><br>
+                            <h6>Example : agak, yang, di, ke </h6><br>
+                            <h6>We then keep the important words which are made into a Word Cloud</h6>
+                            <br><br>
+                            <h6>Here you can specify your own custom stopwords, or you can go ahead to analyze tweets without specifying stopwords</h6>
                             <form id="formStopwords" action="" enctype="multipart/form-data">
                               <div class="row">
                                 <div class="col-5">
                                   <div class="form-group">
-                                    <label for="stopwords">Add Stopwords</label>
+                                    <label for="stopwords">Add Stopwords (optional)</label>
                                     <input type="text" name="stopwords" id="stopwords" class="form-control" />
                                   </div>
                                 </div>
@@ -306,114 +319,23 @@
                         </div>
 
                         <div id="hasilAnalisis" class="d-none">
-                          <div class="sub-judul">Hasil Analisa</div>
+                          <div class="judul-sedang">WordCloud</div><br>
                             <div class="row">
-                              <div class="sub-judul">WordCloud</div>
+                              <div class="sub-judul">World cloud shows us the most common words used when searching for a keyword.</div>
                               <img src="" alt="grafik-loss" id="cloud" width="100%">
                             </div>
-                            <br><br>
                             <hr>
-                            <div class="row">
-                              <div class="sub-judul">Network Visualization</div>
-                              <img src="" alt="grafik-loss" id="network" width="100%">
-                            </div>
-                            <br><br>
-                            <hr>
-                            <!-- <div class="row">
-                              <div class="col-12 col-md-10">
-                                <div class="sub-judul">Timeseries Graph</div>
-                                <img src="" alt="grafik-loss" id="timeseries" width="100%">
-                              </div>
-                              <div class="col-2 col-md-2">
-                                <form id="formTimeseries" action="" enctype="multipart/form-data">
-                                  <div class="row">
-                                      <div class="form-group">
-                                          <label for="word1">Add First Word</label>
-                                          <input type="text" name="word1" id="word1" class="form-control" />
-                                          
-                                          <label for="word2">Add Second Word</label>
-                                          <input type="text" name="word2" id="word2" class="form-control" />
+                            <br>
 
-                                          <div class="text-center py-2">
-                                            <button type="button" class="bt bt-secondary mr-4 disabled d-none" id="btnTimeseriesReset">
-                                                Reset
-                                            </button>
-                                            <button type="submit" id="btnTimeseries" class="bt bt-primary">
-                                                show
-                                            </button>
-                                          </div>
-                                      </div>
-                                  </div>
-                                </form>
-                              </div>
-                            </div>
-                            <br><br>
-                            <hr> -->
                             <div class="row">
-                              <div class="sub-judul">Retweet Indegree Centrality</div>
-                              <table id="tbRTIndegree" class="table" style="width: 50%;">
-                                <thead>
-                                  <tr>
-                                    <th>screen_name</th>
-                                    <th>degree</th>
-                                  </tr>
-                                </thead>
-                              </table>
-                            </div>
-                           <hr>
-                           <div class="row">
-                            <div class="sub-judul">Reply Indegree Centrality</div>
-                            <table id="tbReplyIndegree" class="table" style="width: 50%;">
-                              <thead>
-                                <tr>
-                                  <th>screen_name</th>
-                                  <th>degree</th>
-                                </tr>
-                              </thead>
-                            </table>
-                          </div>
-                          <hr>
-                          <div class="row">
-                            <div class="sub-judul">Retweet Betweeness Centrality</div>
-                            <table id="tbRTbetweeness" class="table" style="width: 50%;">
-                              <thead>
-                                <tr>
-                                  <th>screen_name</th>
-                                  <th>degree</th>
-                                </tr>
-                              </thead>
-                            </table>
-                          </div>
-                          <hr>
-                          <div class="row">
-                            <div class="sub-judul">Reply Betweeness Centrality</div>
-                            <table id="tbReplybetweeness" class="table" style="width: 50%;">
-                              <thead>
-                                <tr>
-                                  <th>screen_name</th>
-                                  <th>degree</th>
-                                </tr>
-                              </thead>
-                            </table>
-                          </div>
-                          <hr>
-                          <div class="row">
-                            <div class="sub-judul">Ratio Degree</div>
-                            <table id="tbRatio" class="table" style="width: 50%;">
-                              <thead>
-                                <tr>
-                                  <th>screen_name</th>
-                                  <th>degree_rt</th>
-                                  <th>degree_reply</th>
-                                  <th>ratio</th>
-                                </tr>
-                              </thead>
-                            </table>
-                          </div>
-                          <hr>
-                            <div class="row">
+                              
+                              <div class="judul-sedang">N-GRAMS</div><br>
+                              <div class="sub-judul">N-grams are the most frequently used word in a tweet. We have included unigrams, bigrams and trigrams. Using multiple words can give us more context </div><br><br>
+                              <hr>
+                              <br><br>
                               <div class="col-12 col-md-10">
-                                <div class="sub-judul">Unigram</div>
+                                <div class="judul-sedang">Unigram</div>
+                                <div class = "sub-judul">Unigrams are the most common words appearing individually</div>
                                 <img src="" alt="grafik-loss" id="unigram" width="100%">
                               </div>
                               <div class="col-2 col-md-2">
@@ -444,7 +366,8 @@
 
                             <div class="row">
                               <div class="col-12 col-md-10">
-                                <div class="sub-judul">Bigram</div>
+                                <div class="judul-sedang">Bigram</div>
+                                <div class = "sub-judul">Bigrams are the most common words appearing as a pair</div>
                                 <img src="" alt="grafik-loss" id="bigram" width="100%">
                               </div>
                               <div class="col-2 col-md-2">
@@ -472,7 +395,8 @@
                             <hr>
                             <div class="row">
                               <div class="col-12 col-md-10">
-                                <div class="sub-judul">Trigram</div>
+                                <div class="judul-sedang">Trigram</div>
+                                <div class = "sub-judul">Trigrams are the most common words appearing as a triplet</div>
                                 <img src="" alt="grafik-loss" id="trigram" width="100%">
                               </div>
                               <div class="col-2 col-md-2">
@@ -498,9 +422,22 @@
                               </div>
                             </div>
                             <hr>
+                            <br><br>
+                            <div class="judul-sedang">POS TAGGER</div><br>
+                                <div class="sub-judul">POS tags every word to their part of speech. (Noun, Adjective, Verb, Adverb)</div><br>
+                                <div class="sub-judul">We then visualize the most common words used for every POS</div>
+                                <div class="sub-judul">
+                                <ul>
+                                  <li>POS = Klarifikasi dari peran dan fungsi sebuah kata dalam struktur kalimat</li>
+                                  <li>Noun = Kata Benda</li>
+                                  <li>Adjective = Kata Sifat</li>
+                                  <li>Verb = Kata Kerja</li>
+                                  <li>Adverb = Kata Keterangan</li>
+                                </ul>
+                            </div>
                             <div class="row">
                               <div class="col-12 col-md-10">
-                                <div class="sub-judul">Verb Counter</div>
+                                <div class="judul-sedang">Verb Counter</div>
                                 <img src="" alt="grafik-loss" id="verb" width="100%">
                               </div>
                               <div class="col-2 col-md-2">
@@ -525,10 +462,10 @@
                                 </form>
                               </div>
                             </div>
-                            <hr>
+                              <hr>
                             <div class="row">
                               <div class="col-12 col-md-10">
-                                <div class="sub-judul">Adjective Counter</div>
+                                <div class="judul-sedang">Adjective Counter</div>
                                 <img src="" alt="grafik-loss" id="adjective" width="100%">
                               </div>
                               <div class="col-2 col-md-2">
@@ -554,10 +491,10 @@
                                 </form>
                               </div>
                             </div>
-                            <hr>
+                              <hr>
                             <div class="row">
                               <div class="col-12 col-md-10">
-                                <div class="sub-judul">Adverb Counter</div>
+                                <div class="judul-sedang">Adverb Counter</div>
                                 <img src="" alt="grafik-loss" id="adverb" width="100%">
                               </div>
                               <div class="col-2 col-md-2">
@@ -582,10 +519,10 @@
                                 </form>
                               </div>
                             </div>
-                            <hr>
+                              <hr>
                             <div class="row">
                               <div class="col-12 col-md-10">
-                                <div class="sub-judul">Noun Counter</div>
+                                <div class="judul-sedang">Noun Counter</div>
                                 <img src="" alt="grafik-loss" id="noun" width="100%">
                               </div>
                               <div class="col-2 col-md-2">
@@ -610,6 +547,114 @@
                                 </form>
                               </div>
                             </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-12 col-md-10">
+                                <div class="judul-sedang">Timeseries Graph</div>
+                                <img src="" alt="grafik-loss" id="timeseries" width="100%">
+                              </div>
+                              <!-- <div class="col-2 col-md-2">
+                                <form id="formTimeseries" action="" enctype="multipart/form-data">
+                                  <div class="row">
+                                      <div class="form-group">
+                                          <label for="word1">Add First Word</label>
+                                          <input type="text" name="word1" id="word1" class="form-control" />
+                                          
+                                          <label for="word2">Add Second Word</label>
+                                          <input type="text" name="word2" id="word2" class="form-control" />
+
+                                          <div class="text-center py-2">
+                                            <button type="button" class="bt bt-secondary mr-4 disabled d-none" id="btnTimeseriesReset">
+                                                Reset
+                                            </button>
+                                            <button type="submit" id="btnTimeseries" class="bt bt-primary">
+                                                show
+                                            </button>
+                                          </div>
+                                      </div>
+                                  </div>
+                                </form>
+                              </div> -->
+                            </div>
+                            <br><br>
+                            <hr>
+                            <div class="judul">NETWORK ANALYSIS</div>
+                            <img src="../static/img/web/network analysis.PNG" alt="" id="" width="100%"><br><br><hr>
+                            <div class="row">
+                              <div class="sub-judul">The larger node the more influential</div>
+                              <img src="" alt="grafik-loss" id="network" width="100%">
+                            </div>
+                            <hr>
+                            <br><br>
+                            <div class="judul">NETWORK ANALYSIS METRICS</div>
+                            <div class="sub-judul">We want to identify users that are most influential by identifying users with the most In-Degree Centrality and Betweenness Centrality</div>
+                            <img src="../static/img/web/metrics.PNG" alt="" id="" width="100%">
+                            <br><br>
+                            <div class="judul-sedang">Retweet Indegree Centrality</div>
+                            <div class="row">
+                              <table id="tbRTIndegree" class="table" style="width: 50%;">
+                                <thead>
+                                  <tr>
+                                    <th>screen_name</th>
+                                    <th>degree</th>
+                                  </tr>
+                                </thead>
+                              </table>
+                            </div>
+                           <hr>
+                           <div class="judul-sedang">Reply Indegree Centrality</div>
+                           <div class="row">
+                            <table id="tbReplyIndegree" class="table" style="width: 50%;">
+                              <thead>
+                                <tr>
+                                  <th>screen_name</th>
+                                  <th>degree</th>
+                                </tr>
+                              </thead>
+                            </table>
+                          </div>
+                          <hr>
+                          <div class="judul-sedang">Retweet Betweeness Centrality</div>
+                          <div class="row">
+                            <table id="tbRTbetweeness" class="table" style="width: 50%;">
+                              <thead>
+                                <tr>
+                                  <th>screen_name</th>
+                                  <th>degree</th>
+                                </tr>
+                              </thead>
+                            </table>
+                          </div>
+                          <hr>
+                          <div class="judul-sedang">Reply Betweeness Centrality</div>
+                          <div class="row">
+                            <table id="tbReplybetweeness" class="table" style="width: 50%;">
+                              <thead>
+                                <tr>
+                                  <th>screen_name</th>
+                                  <th>degree</th>
+                                </tr>
+                              </thead>
+                            </table>
+                          </div>
+                          <hr>
+                          <div class="judul-sedang">Ratio Degree</div>
+                          <div class = "sub-judul">The higher the ratio the more controversial</div>
+                          <div class = "sub-judul">This is because we assume that retweets is a sign of endorsement.</div>
+                          <div class="sub-judul">If a tweet does not have a lot of retweets but recieves a lot of reply, we assume that a lot of people disagree with the tweet</div>
+                          <div class="row">
+                            <table id="tbRatio" class="table" style="width: 50%;">
+                              <thead>
+                                <tr>
+                                  <th>screen_name</th>
+                                  <th>degree_rt</th>
+                                  <th>degree_reply</th>
+                                  <th>ratio</th>
+                                </tr>
+                              </thead>
+                            </table>
+                          </div>
+                          <hr>
                           </div>
                       </div>
                  </div>
