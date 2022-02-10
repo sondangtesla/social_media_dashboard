@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="../static/img/web/favicon.png" />
+  <title>NLP ANALYSIS</title>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Acme&family=Lato&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="../static/css/custom.css" />
+</head>
+
+<body data-spy="scroll" data-target="#spy" data-offset="200">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="spy">
+    <div class="container">
+      <a class="navbar-brand" href="#beranda">NLP EIDARA</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#beranda">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#scrape">Collect Data</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#testing">Select From Exist Data</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section id="beranda">
+    <div class="container">
+      <div data-aos="fade-right" data-aos-delay="600">
+    <div class="row">
+      <div class="col-md-6 pr-1">
+        <div class="caption">EIDARA MATADATA PRESISI NLP ANALYSIS  
+        </div>
+        <br />
+        
+        <div class="py-5">
+          <a href="#scrape" class="bt-primary-lg"> COLLECT DATA </a>
+        </div>
+        <div class="py-5">
+          <a href="#testing" class="bt-primary-lg"> SELECT FROM EXIST DATA </a>
+        </div>
+        
+      </div>      
+    </div>
+    </div>
+  </div>
+  </section>
+
+  <div class="container">
+      <div data-aos="fade-right" data-aos-delay="600">
+      <section id="scrape" class="content">
+        <h2 class="judul">COLLECT DATA</h2>
+  
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <form id="formScrape" action="" enctype="multipart/form-data">
+              <div class="row">
+                <div class="form-group">
+                  <label for="search_words">Hashtag or Keywords</label>
+                  <input type="text" id="search_words" name="search" placeholder="search hashtag or a words" class="form-control" required />
+                </div>
+                
+                <div class="form-group">
+                  <label for="since">Since</label>
+                  <input type="date" id="since_date" name="since" placeholder="" class="form-control" required />
+                </div>
+                
+                <div class="form-group">
+                  <label for="until">Until</label>
+                  <input type="date" id="until_date" name="until" placeholder="" class="form-control" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="numb">Number of Tweets</label>
+                  <input type="number" id="numb" name="numb" placeholder="" class="form-control" required />
+                </div>
+                <div class="col-3">
+                  <div class="py-1"></div>
+                  <div class="text-center py-3">
+                    <button type="button" class="bt bt-secondary mr-4 d-none" id="btnScrapeReset">Reset
+                    </button>
+                    <button type="submit" id="btnScrape" class="bt bt-primary">Collect Data
+                    </button>
+                  </div>
+                </div>  
+              </div>
+            </form>
+          </div>
+        </div>
+        <hr>
+  
+        <div id="scrapekosong" class="scrapekosong">
+          <div id="spinner" class="text-center d-none">
+            <div class="sub-judul">Data Collected Result</div>
+            <div class="lds-ellipsis">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <div class="small py-4">
+              Sedang mengumpulkan data ...
+            </div>
+          </div>
+        </div>
+        
+        <div id="hasilScrape" class="d-none">
+          <div class="row hasil-training py-3">
+            <table id="tbScrape" class="table" style="width: 50%;">
+              <thead>
+                <tr>
+                  <th>Tanggal</th>
+                  <th>ID</th>
+                  <th>Username</th>
+                  <th>Jumlah Retweet</th>
+                  <th>Retweeted Status Username</th>
+                  <th>Retweet Text</th>
+                  <th>Tweet Text</th>
+                  <th>Lokasi</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+  <div class="container">
+    <div data-aos="fade-right" data-aos-delay="600">
+      <section id="testing" class="content">
+        <h2 class="judul">SELECT FROM EXISTING DATA</h2>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+              <form id="formTest" action="" enctype="multipart/form-data">
+                <div class="row">
+                  <div class="col-3">
+                    <div class="form-group">
+                      <label for="testDataset">Upload File</label>
+                      <input type="file" name="testDataset" id="testDataset" class="form-control" required />
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class="py-1"></div>
+                    <div class="text-center py-3">
+                      <button type="button" class="bt bt-secondary mr-4 disabled d-none" id="btnTestReset">
+                        Reset
+                      </button>
+                      <button type="submit" id="btnTest" class="bt bt-primary">
+                        Show
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+        </div>
+        <hr>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div id="testkosong" class="testkosong">
+                    <div id="test_spinner" class="text-center d-none">
+                      <div class="sub-judul">FROM EXISTING DATA</div>
+                      <div class="lds-ellipsis">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                      </div>
+                      <div class="small py-4">
+                        proses sedang berjalan ...
+                      </div>              
+                    </div>
+                </div>
+
+                <div id="hasilTest" class="py-4 d-none">
+                    <table id="tbResult" class="table" style="width: 100%;">
+                        <thead>
+                          <tr>
+                            <th>Tanggal</th>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Jumlah Retweet</th>
+                            <th>Retweeted Status Username</th>
+                            <th>Retweet Text</th>
+                            <th>Tweet Text</th>
+                            <th>Lokasi</th>
+                          </tr>
+                        </thead>
+                    </table>
+
+                    <div class="col-md-12">
+                        <form id="formFilter" action="" enctype="multipart/form-data">
+                          <div class="row">
+                            <div class="col-3">
+                              <div class="form-group">
+                                <label for="filter-out">Filterout by Original Author of Retweet</label>
+                                <input type="text" name="filter-out" id="filter-out" class="form-control"/>
+                              </div>
+                            </div>
+                            <div class="col-3">
+                              <div class="py-1"></div>
+                              <div class="text-center py-3">
+                                <button type="button" class="bt bt-secondary mr-4 disabled d-none" id="btnFilterReset">
+                                  Reset
+                                </button>
+                                <button type="submit" id="btnFilter" class="bt bt-primary">
+                                  Filter Out
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                    </div>
+
+                    <div id="filterkosong" class="filterkosong">
+                        <div id="test_spinner" class="text-center d-none">
+                          <div class="sub-judul">After Filter Out</div>
+                          <div class="lds-ellipsis">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                          </div>
+                          <div class="small py-4">
+                                proses sedang berjalan ...
+                          </div>              
+                        </div>
+                    </div>
+
+                    <div id="hasilFilter" class="py-4 d-none">
+                        <table id="tbFilter" class="table" style="width: 100%;">
+                            <thead>
+                              <tr>
+                                <th>Tanggal</th>
+                                <th>ID</th>
+                                <th>Username</th>
+                                <th>Jumlah Retweet</th>
+                                <th>Retweeted Status Username</th>
+                                <th>Retweet Text</th>
+                                <th>Tweet Text</th>
+                                <th>Lokasi</th>
+                              </tr>
+                            </thead>
+                        </table>
+                          <br><br><br>
+                        <div class="col-md-12">
+                          <div class="sub-judul">Analyze Tweet</div>
+                          <br><br>
+                            <form id="formStopwords" action="" enctype="multipart/form-data">
+                              <div class="row">
+                                <div class="col-5">
+                                  <div class="form-group">
+                                    <label for="stopwords">Add Stopwords</label>
+                                    <input type="text" name="stopwords" id="stopwords" class="form-control" />
+                                  </div>
+                                </div>
+                                <div class="text-center py-3">
+                                  <button type="button" class="bt bt-secondary mr-4 disabled d-none" id="btnStopwordsReset">
+                                      Reset
+                                  </button>
+                                  <button type="submit" id="btnStopwords" class="bt bt-primary">
+                                      analyze tweet
+                                  </button>
+                                </div>
+                              </div>
+                            </form>
+                        </div>
+
+                        <div id="analisakosong" class="analisakosong">
+                            <div id="test_spinner" class="text-center d-none">
+                              
+                              <div class="lds-ellipsis">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                              </div>
+                                
+                              <div class="small py-4">
+                                proses sedang berjalan ...
+                              </div>              
+                            </div>
+                        </div>
+
+                        <div id="hasilAnalisis" class="d-none">
+                          <div class="sub-judul">Hasil Analisa</div>
+                            <div class="row">
+                              <div class="sub-judul">WordCloud</div>
+                              <img src="" alt="grafik-loss" id="cloud" width="100%">
+                            </div>
+                            <br><br>
+                            <hr>
+                            <div class="row">
+                              <div class="sub-judul">Network Visualization</div>
+                              <img src="" alt="grafik-loss" id="network" width="100%">
+                            </div>
+                            <br><br>
+                            <hr>
+                            <!-- <div class="row">
+                              <div class="col-12 col-md-10">
+                                <div class="sub-judul">Timeseries Graph</div>
+                                <img src="" alt="grafik-loss" id="timeseries" width="100%">
+                              </div>
+                              <div class="col-2 col-md-2">
+                                <form id="formTimeseries" action="" enctype="multipart/form-data">
+                                  <div class="row">
+                                      <div class="form-group">
+                                          <label for="word1">Add First Word</label>
+                                          <input type="text" name="word1" id="word1" class="form-control" />
+                                          
+                                          <label for="word2">Add Second Word</label>
+                                          <input type="text" name="word2" id="word2" class="form-control" />
+
+                                          <div class="text-center py-2">
+                                            <button type="button" class="bt bt-secondary mr-4 disabled d-none" id="btnTimeseriesReset">
+                                                Reset
+                                            </button>
+                                            <button type="submit" id="btnTimeseries" class="bt bt-primary">
+                                                show
+                                            </button>
+                                          </div>
+                                      </div>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                            <br><br>
+                            <hr> -->
+                            <div class="row">
+                              <div class="sub-judul">Retweet Indegree Centrality</div>
+                              <table id="tbRTIndegree" class="table" style="width: 50%;">
+                                <thead>
+                                  <tr>
+                                    <th>screen_name</th>
+                                    <th>degree</th>
+                                  </tr>
+                                </thead>
+                              </table>
+                            </div>
+                           <hr>
+                           <div class="row">
+                            <div class="sub-judul">Reply Indegree Centrality</div>
+                            <table id="tbReplyIndegree" class="table" style="width: 50%;">
+                              <thead>
+                                <tr>
+                                  <th>screen_name</th>
+                                  <th>degree</th>
+                                </tr>
+                              </thead>
+                            </table>
+                          </div>
+                          <hr>
+                          <div class="row">
+                            <div class="sub-judul">Retweet Betweeness Centrality</div>
+                            <table id="tbRTbetweeness" class="table" style="width: 50%;">
+                              <thead>
+                                <tr>
+                                  <th>screen_name</th>
+                                  <th>degree</th>
+                                </tr>
+                              </thead>
+                            </table>
+                          </div>
+                          <hr>
+                          <div class="row">
+                            <div class="sub-judul">Reply Betweeness Centrality</div>
+                            <table id="tbReplybetweeness" class="table" style="width: 50%;">
+                              <thead>
+                                <tr>
+                                  <th>screen_name</th>
+                                  <th>degree</th>
+                                </tr>
+                              </thead>
+                            </table>
+                          </div>
+                          <hr>
+                          <div class="row">
+                            <div class="sub-judul">Ratio Degree</div>
+                            <table id="tbRatio" class="table" style="width: 50%;">
+                              <thead>
+                                <tr>
+                                  <th>screen_name</th>
+                                  <th>degree_rt</th>
+                                  <th>degree_reply</th>
+                                  <th>ratio</th>
+                                </tr>
+                              </thead>
+                            </table>
+                          </div>
+                          <hr>
+                            <div class="row">
+                              <div class="col-12 col-md-10">
+                                <div class="sub-judul">Unigram</div>
+                                <img src="" alt="grafik-loss" id="unigram" width="100%">
+                              </div>
+                              <div class="col-2 col-md-2">
+                                <form id="formUnigram" action="" enctype="multipart/form-data">
+                                  <div class="row">
+                                      <div class="form-group">
+                                          <label for="stopwords">Add Stopwords</label>
+                                          <input type="text" name="stopwords" id="stopwords" class="form-control" />
+
+                                          <label for="unigram_threshold">Unigram Threshold</label>
+                                          <input type="number" name="unigram_threshold" id="unigram_threshold" class="form-control" value="100" required />
+                                        
+                                          <div class="text-center py-2">
+                                            <button type="button" class="bt bt-secondary mr-4 disabled d-none" id="btnUnigramReset">
+                                                Reset
+                                            </button>
+                                            <button type="submit" id="btnUnigram" class="bt bt-primary">
+                                                Change Threshold
+                                            </button>
+                                          </div>
+                                      </div>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                            <hr>
+                            <br>
+
+                            <div class="row">
+                              <div class="col-12 col-md-10">
+                                <div class="sub-judul">Bigram</div>
+                                <img src="" alt="grafik-loss" id="bigram" width="100%">
+                              </div>
+                              <div class="col-2 col-md-2">
+                                <form id="formBigram" action="" enctype="multipart/form-data">
+                                  <div class="row">
+                                        <div class="form-group">
+                                          <label for="stopwords">Add Stopwords</label>
+                                          <input type="text" name="stopwords" id="stopwords" class="form-control" />
+                                          <label for="bigram_threshold">Bigram Threshold</label>
+                                          <input type="number" name="bigram_threshold" id="bigram_threshold" class="form-control" value="100" required />
+                                        </div>
+  
+                                    <div class="text-center py-3">
+                                      <button type="button" class="bt bt-secondary mr-4 disabled d-none" id="btnBigramReset">
+                                          Reset
+                                      </button>
+                                      <button type="submit" id="btnBigram" class="bt bt-primary">
+                                          Change Threshold
+                                      </button>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-12 col-md-10">
+                                <div class="sub-judul">Trigram</div>
+                                <img src="" alt="grafik-loss" id="trigram" width="100%">
+                              </div>
+                              <div class="col-2 col-md-2">
+                                <form id="formTrigram" action="" enctype="multipart/form-data">
+                                  <div class="row">
+                                        <div class="form-group">
+                                          <label for="stopwords">Add Stopwords</label>
+                                          <input type="text" name="stopwords" id="stopwords" class="form-control" />
+                                          <label for="trigram_threshold">Trigram Threshold</label>
+                                          <input type="number" name="trigram_threshold" id="trigram_threshold" class="form-control" value="100" required />
+                                        </div>
+                                      
+                                    <div class="text-center py-3">
+                                      <button type="button" class="bt bt-secondary mr-4 disabled d-none" id="btnTrigramReset">
+                                          Reset
+                                      </button>
+                                      <button type="submit" id="btnTrigram" class="bt bt-primary">
+                                          Change Threshold
+                                      </button>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-12 col-md-10">
+                                <div class="sub-judul">Verb Counter</div>
+                                <img src="" alt="grafik-loss" id="verb" width="100%">
+                              </div>
+                              <div class="col-2 col-md-2">
+                                <form id="formVerb" action="" enctype="multipart/form-data">
+                                  <div class="row">
+                                        <div class="form-group">
+                                          <label for="stopwords">Add Stopwords</label>
+                                          <input type="text" name="stopwords" id="stopwords" class="form-control" />
+                                          <label for="verb_threshold">Verb Counter Threshold</label>
+                                          <input type="number" name="verb_threshold" id="verb_threshold" class="form-control" value="30" required />
+                                        </div>
+  
+                                    <div class="text-center py-3">
+                                      <button type="button" class="bt bt-secondary mr-4 disabled d-none" id="btnVerbReset">
+                                          Reset
+                                      </button>
+                                      <button type="submit" id="btnVerb" class="bt bt-primary">
+                                          Change Threshold
+                                      </button>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-12 col-md-10">
+                                <div class="sub-judul">Adjective Counter</div>
+                                <img src="" alt="grafik-loss" id="adjective" width="100%">
+                              </div>
+                              <div class="col-2 col-md-2">
+                                <form id="formAdjective" action="" enctype="multipart/form-data">
+                                  <div class="row">
+                                        <div class="form-group">
+                                          <label for="stopwords">Add Stopwords</label>
+                                          <input type="text" name="stopwords" id="stopwords" class="form-control" />
+                                          <label for="adjective_threshold">Adjective Counter Threshold</label>
+                                          <input type="number" name="adjective_threshold" id="adjective_threshold" class="form-control" value="100" required />
+                                        </div>
+                                      
+  
+                                    <div class="text-center py-3">
+                                      <button type="button" class="bt bt-secondary mr-4 disabled d-none" id="btnAdjectiveReset">
+                                          Reset
+                                      </button>
+                                      <button type="submit" id="btnAdjective" class="bt bt-primary">
+                                          Change Threshold
+                                      </button>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-12 col-md-10">
+                                <div class="sub-judul">Adverb Counter</div>
+                                <img src="" alt="grafik-loss" id="adverb" width="100%">
+                              </div>
+                              <div class="col-2 col-md-2">
+                                <form id="formAdverb" action="" enctype="multipart/form-data">
+                                  <div class="row">
+                                        <div class="form-group">
+                                          <label for="stopwords">Add Stopwords</label>
+                                          <input type="text" name="stopwords" id="stopwords" class="form-control" />
+                                          <label for="adverb_threshold">Adverb Counter Threshold</label>
+                                          <input type="number" name="adverb_threshold" id="adverb_threshold" class="form-control" value="100" required />
+                                        </div>
+                                        
+                                    <div class="text-center py-3">
+                                      <button type="button" class="bt bt-secondary mr-4 disabled d-none" id="btnAdverbReset">
+                                          Reset
+                                      </button>
+                                      <button type="submit" id="btnAdverb" class="bt bt-primary">
+                                          Change Threshold
+                                      </button>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-12 col-md-10">
+                                <div class="sub-judul">Noun Counter</div>
+                                <img src="" alt="grafik-loss" id="noun" width="100%">
+                              </div>
+                              <div class="col-2 col-md-2">
+                                <form id="formNoun" action="" enctype="multipart/form-data">
+                                  <div class="row">
+                                        <div class="form-group">
+                                          <label for="stopwords">Add Stopwords</label>
+                                          <input type="text" name="stopwords" id="stopwords" class="form-control" />
+                                          <label for="verb_threshold">Noun Counter Threshold</label>
+                                          <input type="number" name="noun_threshold" id="noun_threshold" class="form-control" value="100" required />
+                                        </div>
+                                    
+                                    <div class="text-center py-3">
+                                      <button type="button" class="bt bt-secondary mr-4 disabled d-none" id="btnNounReset">
+                                          Reset
+                                      </button>
+                                      <button type="submit" id="btnNoun" class="bt bt-primary">
+                                          Change Threshold
+                                      </button>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                 </div>
+
+                
+
+            </div>
+        </div>
+        
+      </section>
+    </div>
+
+  </div>
+  <hr>
+
+
+
+
+
+
+   
+    
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="../static/js/custom.js"></script>
+</body>
+
+</html>
