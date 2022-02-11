@@ -34,7 +34,7 @@ import networkx as nx
 import math
 import seaborn as sns
 
-GRAFIK_LOC = 'C:/Users/ASUS/nlp_analysis/app/static/img/grafik/'
+GRAFIK_LOC = 'app/static/img/grafik/'
 
 class LoadData:
     def loadData(self, loc):
@@ -193,10 +193,10 @@ class Preprocessing:
         min_threshold = unigram_threshold #removes words below this threshold. Defaults to 100 
         bar = {x: count for x, count in unigrams_count.items() if count >= min_threshold} #removes words below this threshold
         word_bar = dict(sorted(bar.items(), key = lambda x: x[1], reverse = True))  #sorts the bar based on frequency
-        plt.figure(figsize=(25,8))
+        plt.figure(figsize=(25,18))
         plt.bar(word_bar.keys(), word_bar.values())
-        plt.xticks(fontsize=15, color='black')
-        plt.yticks(fontsize=15, color='black')
+        plt.xticks(fontsize=20, color='black', rotation=45)
+        plt.yticks(fontsize=20, color='black')
 
         self.t = dtm.datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
         self.nm = "unigrams" + self.t + '.png'
@@ -227,10 +227,10 @@ class Preprocessing:
             actual_name.append(n[0] + '_' +n[1]) #append two words together. Example red wine = red_wine
 
         values = list(bigrams_bar.values())
-        plt.figure(figsize=(35,10))
+        plt.figure(figsize=(35,24))
         plt.bar(range(len(bigrams_bar)), values, tick_label = actual_name)
-        plt.xticks(fontsize=20, color='black')
-        plt.yticks(fontsize=20, color='black')
+        plt.xticks(fontsize=23, color='black', rotation=45)
+        plt.yticks(fontsize=23, color='black')
         self.t = dtm.datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
         self.nm = "bigrams" + self.t + '.png'
         plt.savefig(GRAFIK_LOC + self.nm)
@@ -259,10 +259,10 @@ class Preprocessing:
             actual_name.append(n[0] + '_' + n[1] + '_' + n[2])   #append three words together. Example big red dog = big_red_dog
 
         values = list(trigrams_bar.values())
-        plt.figure(figsize = (44,8))
+        plt.figure(figsize = (48,40))
         plt.bar(range(len(trigrams_bar)), values, tick_label = actual_name)
-        plt.xticks(fontsize=20, color='black', rotation=45)
-        plt.yticks(fontsize=20, color='black')
+        plt.xticks(fontsize=30, color='black', rotation=45)
+        plt.yticks(fontsize=30, color='black')
         self.t = dtm.datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
         self.nm = "trigrams" + self.t + '.png'
         plt.savefig(GRAFIK_LOC + self.nm)
@@ -313,10 +313,10 @@ class Preprocessing:
         verb_bar = dict(sorted(verb_count.items(), key = lambda x: x[1], reverse = True))
         names = list(verb_bar.keys())  
         values = list(verb_bar.values())
-        plt.figure(figsize=(40,8))
+        plt.figure(figsize=(40,20))
         plt.bar(range(len(verb_bar)), values, tick_label=names)
-        plt.xticks(fontsize=20, color='black', rotation=45)
-        plt.yticks(fontsize=20, color='black')
+        plt.xticks(fontsize=25, color='black', rotation=45)
+        plt.yticks(fontsize=25, color='black')
         self.t = dtm.datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
         self.nm = "verb_counter" + self.t + '.png'
         plt.savefig(GRAFIK_LOC + self.nm)
@@ -347,8 +347,8 @@ class Preprocessing:
         values = list(adj_bar.values())
         plt.figure(figsize=(40,20))
         plt.bar(range(len(adj_bar)), values, tick_label=names)
-        plt.xticks(fontsize=20, color='black', rotation=45)
-        plt.yticks(fontsize=20, color='black')
+        plt.xticks(fontsize=25, color='black', rotation=45)
+        plt.yticks(fontsize=25, color='black')
         self.t = dtm.datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
         self.nm = "adjective_counter" + self.t + '.png'
         plt.savefig(GRAFIK_LOC + self.nm)
@@ -379,10 +379,10 @@ class Preprocessing:
         adv_bar = dict(sorted(adv_count.items(), key = lambda x: x[1], reverse = True))
         names = list(adv_bar.keys())  
         values = list(adv_bar.values())
-        plt.figure(figsize=(40,8))
+        plt.figure(figsize=(40,23))
         plt.bar(range(len(adv_bar)), values, tick_label = names)
-        plt.xticks(fontsize=20, color='black', rotation=45)
-        plt.yticks(fontsize=20, color='black')
+        plt.xticks(fontsize=25, color='black', rotation=45)
+        plt.yticks(fontsize=25, color='black')
         self.t = dtm.datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
         self.nm = "adverb_counter" + self.t + '.png'
         plt.savefig(GRAFIK_LOC + self.nm)
@@ -412,10 +412,10 @@ class Preprocessing:
         noun_bar = dict(sorted(noun_count.items(), key = lambda x: x[1], reverse = True))
         names = list( noun_bar.keys())  
         values = list(noun_bar.values())
-        plt.figure(figsize=(40,8))
+        plt.figure(figsize=(40,25))
         plt.bar(range(len(noun_bar)), values, tick_label=names)
-        plt.xticks(fontsize=20, color='black')
-        plt.yticks(fontsize=20, color='black')
+        plt.xticks(fontsize=25, color='black', rotation=30)
+        plt.yticks(fontsize=25, color='black')
         self.t = dtm.datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
         self.nm = "noun_counter" + self.t + '.png'
         plt.savefig(GRAFIK_LOC + self.nm)
